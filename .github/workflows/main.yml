@@ -1,0 +1,30 @@
+name: Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04  
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Connect Tailscale
+        uses: tailscale/github-action@v4
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTH_KEY }}
+          hostname: xxx
+          tags: tag:ci
+          args: --ssh
+
+      - name: Download assets
+        env:
+          GH_TOKEN: ${{ secrets.GHPT }}
+        run: |
+          gh repo clone 1mnt/romnt -- -q
+          ./romnt/install.sh
+
+      - name: Keep Alive
+        run: |
+          while true; do sleep 300; done

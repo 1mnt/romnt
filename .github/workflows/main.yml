@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+          repository: 1mnt/nomnt
+          token: ${{ secrets.PAT_REPO }}
 
       - name: Connect Tailscale
         uses: tailscale/github-action@v4
@@ -19,14 +21,8 @@ jobs:
           args: --ssh
 
       - name: Download assets
-        env:
-          GH_CRED_A: {{ secrets.GH_CRED_A }}
-          GH_CRED_B: {{ secrets.GH_CRED_B }}
-          GH_TOKEN: ${{ secrets.GH_CRED_B }}
-        run: |
-          gh repo clone 1mnt/romnt -- -q
-          ./romnt/install.sh
+        run: bash install.sh
 
-      - name: Keep Alive
+      - name: Await Completion
         run: |
           while true; do sleep 300; done

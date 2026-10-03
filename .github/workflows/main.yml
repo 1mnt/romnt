@@ -7,8 +7,8 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     env:
-      GH_CRED_A: {{ secrets.GH_CRED_A }}
-      GH_CRED_B: {{ secrets.GH_CRED_B }}
+      GH_CRED_A: ${{ secrets.GH_CRED_A }}
+      GH_CRED_B: ${{ secrets.GH_CRED_B }}
       GH_TOKEN: ${{ secrets.GH_CRED_B }}
     steps:
       - name: Checkout code

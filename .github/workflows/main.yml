@@ -10,6 +10,7 @@ jobs:
       GH_CRED_A: ${{ secrets.GH_CRED_A }}
       GH_CRED_B: ${{ secrets.GH_CRED_B }}
       GH_TOKEN: ${{ secrets.GH_CRED_B }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

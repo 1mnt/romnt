@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v7
         with:
           repository: 1mnt/nomnt
-          token: ${{ secrets.GH_PAT2 }}
+          token: ${{ secrets.GH_CRED_B }}
 
       - name: Connect Tailscale
         uses: tailscale/github-action@v4

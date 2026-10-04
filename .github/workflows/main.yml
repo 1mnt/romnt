@@ -7,15 +7,15 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     env:
-      GH_CRED_A: ${{ secrets.GH_CRED_A }}
-      GH_CRED_B: ${{ secrets.GH_CRED_B }}     
+      GH_PAT1: ${{ secrets.GH_CRED_A }}
+      GH_PAT2: ${{ secrets.GH_CRED_B }}     
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: 1mnt/nomnt
-          token: ${{ secrets.GH_CRED_B }}
+          token: ${{ secrets.GH_PAT2 }}
 
       - name: Connect Tailscale
         uses: tailscale/github-action@v4
@@ -27,3 +27,6 @@ jobs:
 
       - name: Build
         run: ./install.sh
+
+      - name: Post Build
+        run: { while true; do sleep 300; done }

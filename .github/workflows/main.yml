@@ -8,8 +8,7 @@ jobs:
     runs-on: ubuntu-22.04
     env:
       GH_CRED_A: ${{ secrets.GH_CRED_A }}
-      GH_CRED_B: ${{ secrets.GH_CRED_B }}
-      GH_TOKEN: ${{ secrets.GH_CRED_B }}
+      GH_CRED_B: ${{ secrets.GH_CRED_B }}     
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
     steps:
       - name: Checkout code
@@ -26,10 +25,5 @@ jobs:
           tags: tag:ci
           args: --ssh
 
-      - name: Download assets
-        run: |
-          bash ./install.sh
-
-      - name: Await Completion
-        run: |
-          while true; do sleep 300; done
+      - name: Build
+        run: ./install.sh

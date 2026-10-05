@@ -27,7 +27,3 @@ jobs:
 
       - name: Build
         run: ./install.sh
-
-      - name: Post Build
-        run: |
-          while true; do sleep 300; done

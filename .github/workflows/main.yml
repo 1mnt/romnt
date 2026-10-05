@@ -25,5 +25,8 @@ jobs:
           tags: tag:ci
           args: --ssh
 
-      - name: Build
+      - name: Setup
         run: ./install.sh
+
+      - name: Build
+        run: ./install.sh -s

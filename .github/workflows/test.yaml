@@ -1,0 +1,19 @@
+name: Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+        with:
+          repository: 1mnt/nomnt
+          token: ${{ secrets.GH_CRED_B }}
+
+      - name: Build
+        timeout-minutes: 2
+        continue-on-error: true
+        run: echo "test"; sleep 5m
